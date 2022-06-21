@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>
+            Formulário!
+        </title>
+    </head>
+    <body>
+        <form>
+            <label for="usuario">Digite seu usuário:</label>
+            <input name="usuario "type="text">
+            <br><br>
+            <label for="email">Digite seu email</label>
+            <input type="email" name="email">
+            <br><br>
+            <label for="senha"></label>
+            <input type="password" name="password" placeholder="senha">
+            <p>Selecione sua idade:</p>
+            <input type="radio" name="age" value="0-25" id="option-1">
+            <label for="age">0-25</label>
+            <input type="radio" name="age" value="26-50" id="option-2">
+            <label for="age">26-50</label>
+            <input type="radio" name="age" value="51+" id="option-3">
+            <label for="age">51+</label>
+
+            <br><br>
+            <label for="questions">Pergunta secreta:</label>
+            <select name="questions" id="questions">
+                <option value="q1">Qual seu animal favorito</option>
+                <option value="q2">Qual seu time do coração?</option>
+                <option value="q2">Qual sua cidade de nascimento?</option>
+            </select>
+            <br><br>
+            <label for="answer">Resposta secreta:</label>
+            <input type="text" name="answer" placeholder="resposta">
+            <br><br><label for="bio">Sua biografia</label>
+            <textarea name="bio" id="bio" cols="30" rows="10"></textarea>
+            <br><br>
+            <input type="submit" value="salvar">
+        </form>
+    </body>
+</html>
