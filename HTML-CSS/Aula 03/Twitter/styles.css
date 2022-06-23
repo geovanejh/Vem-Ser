@@ -1,0 +1,47 @@
+section {
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content img {
+    width: 590px;
+    height: 720px;
+    margin-right: 20px;
+}
+
+span {
+    background-color: #2C2C2C;
+    color: white;
+    font-size: 18px;
+    line-height: 20px;
+    padding: 20px 0 20px 20px;
+    width: 570px;
+    position: absolute; 
+    margin-top: 660px;
+}
+
+.right-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.right-content img {
+    margin-bottom: 20px;
+    width: 590px;
+    height: 350px;
+}
+
+.right-dogs {
+    display: flex;
+    flex-direction: column;
+}
+
+.right-dogs span {
+    margin-top: 290px;
+}

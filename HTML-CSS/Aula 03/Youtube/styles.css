@@ -1,0 +1,35 @@
+section {
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.main-content p {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+.main-content img {
+    width: 800px;
+    margin-right: 20px;
+}
+
+.recommendations {
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dogs {
+    margin-bottom: 20px;
+}
+
+.dogs p {
+    line-height: 17px;
+    font-size: 14px;
+}
+
+.dogs img {
+    width: 380px;
+}
