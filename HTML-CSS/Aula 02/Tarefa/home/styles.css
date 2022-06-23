@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Roboto;
+    color: gray;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto; 
+}
+
+header nav {
+    padding: 10px 50px;
+}
+
+header {
+    background-color: red;
+    padding: 15px 0;
+}
+
+header img {
+    border-radius: 100%;
+    background-color: white;
+    padding: 10px;
+    width: 50px;
+}
+
+header small {
+    color:white;
+}
+
+nav ul li a{
+    color: white;
+    text-decoration: underline;
+    list-style-type: none;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+header nav ul li{
+    display: inline;
+    text-decoration: underline;
+    margin-right: 15px;
+}
+
+main h1 {
+    padding: 30px;
+}
+
+.logos {
+    text-align: center;
+}
+
+.logos img {
+    margin-bottom: 20px;
+}
+
+.logos table {
+    text-align: center;
+    margin: auto;
+    border-spacing: 30px;
+}
+
+.logos table td {
+    border: 1px solid lightgray;
+    border-radius: 30px;
+    padding: 20px;
+}
+
+.logos table tr td img {
+    background-color: white;
+    border-radius: 100%;
+}
+
+.main-text{
+    background-color: #444;
+    padding: 40px 0px;
+    margin-bottom: 30px;
+}
+
+.main-text p {
+    line-height: 25px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.map {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+footer {
+    background-color: red;
+    padding: 40px 0px;
+}
+
+footer ul li {
+    margin-bottom: 10px;
+}
+
+footer ul {
+    margin-bottom: 20px;
+}
+
+address {
+    color: white;
+}

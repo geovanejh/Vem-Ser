@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Roboto;
+    color: dimgray;
+}
+
+.container {
+    max-width: 1280px;
+    margin: auto; 
+}
+
+header nav {
+    padding: 10px 50px;
+}
+
+header {
+    background-color: red;
+    padding: 15px 0;
+}
+
+header img {
+    border-radius: 100%;
+    background-color: white;
+    padding: 10px;
+    width: 50px;
+}
+
+header small {
+    color:white;
+}
+
+nav ul li a{
+    color: white;
+    text-decoration: underline;
+    list-style-type: none;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+header nav ul li{
+    display: inline;
+    text-decoration: underline;
+    margin-right: 15px;
+}
+
+footer {
+    background-color: red;
+    padding: 40px 0px;
+}
+
+footer ul li {
+    margin-bottom: 10px;
+}
+
+footer ul {
+    margin-bottom: 20px;
+}
+
+address {
+    color: white;
+}
+
+.contact-form {
+    border: 1px solid lightgray;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+section {
+    padding: 30px;
+}
+
+section h1 {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.text-input {
+    width: 300px;
+    height: 30px;
+    margin: 10px 0 20px 0;
+}
+
+.contact-form textarea {
+    margin: 10px 0 20px 0;
+    width: 300px;
+}
+
+.save-button {
+    background-color: red;
+    color:white;
+    font-weight: bold;
+    border: 0;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
