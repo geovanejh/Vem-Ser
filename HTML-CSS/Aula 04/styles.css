@@ -1,8 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&family=Montserrat&display=swap');
 
-* {
+html, * {
     font-family: Montserrat;
 }
+
+html {    
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+}
+
+h3 {
+    font-size:24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 30px;
+    line-height: 40px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 26px;
+}
+
 
 .container {
     max-width: 1200px;
@@ -13,34 +38,34 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 60px;
+    height: 100%;
 }
 
-.nav {
+.nav-left {
     display: flex;
     align-items: center;
 }
 
-.nav ul li a {
+.nav-left ul li a {
     font-family: Montserrat;
     font-size: 15px;
     color: #18A0FB;
 }
 
 .logo img {
+    display: flex;
+    align-items: center;
     margin-right: 70px;
 }
 
-.nav a {
+.nav-left a {
     margin-right: 40px;
     font-family: Comfortaa;
-    text-decoration: none;
     font-size: 28.4444px;
 }
 
 header {
-    width: 100vw;
-    height: 60px;
+    height: 8vh;
 }
 
 header nav ul {
@@ -48,8 +73,10 @@ header nav ul {
 }
 
 header nav ul li {
-    font-weight: 700;
+    font-weight: 500;
 }
+
+
 
 .login-buttons button {
     margin-left: 12px;
@@ -86,32 +113,183 @@ header nav ul li {
 .video {
     display: flex;
     justify-content: center;
-    align-items: center;
-    background-color: #E5E5E5;
-    width: 100vw;
-    height: 960px;
+    background: url('https://i.pinimg.com/originals/fb/be/28/fbbe282e940039a76cb2d4216de7a914.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    height: 92vh;
 }
 
 .video-components {
     width: 100%;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     display: flex;
     flex-direction: column;
 }
 
 .video-components i {
     font-size: 132px;
-    margin-bottom: 123px;
     color: #18A0FB;
+    position: absolute;
+    margin-bottom: 66px;
 }
 
 .video-components h1 {
-    font-size: 56px;
-    margin-bottom: 123px;
+    font-size: 48px;
+    margin: 123px 0;
+    position: absolute;
+    margin-top: 375px;
 }
 
 .video-components input {
     width: 192px;
+    position: absolute;
+    margin-top: 425px;
 }
+
+.title-text {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title-text h1 {
+    padding: 120px 0 0 0;
+    width: 100%;
+    font-size: 40px; 
+    line-height: 60px;
+}
+
+.title-text span {
+    width: 100%;
+}
+
+.text-contents {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 60px 0;
+}
+
+.text-contents p {
+    margin-bottom: 28px;
+}
+
+.text-contents div {
+    width: 550px;
+    margin-bottom: 60px;
+}
+
+.image-section {
+    padding: 60px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.image-section img {
+    width: 595px;
+}
+
+.image-text {
+    margin-left: 60px;
+}
+
+.reversed-image-text {
+    margin-right: 60px;
+}
+
+.reversed-image-section {
+    background-color: #F5F5F5;
+}
+
+.cards-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    padding: 100px 0;
+    height: 500px;
+}
+
+.cards-section h1 {
+    font-size: 40px;
+}
+
+.cards img {
+    width: 173px;
+    height: 76px;
+    padding: 32px 42px;
+}
+
+.contact-section {
+    background-color: #F5F5F5;
+}
+
+.contact-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 100px 0;
+}
+
+.contact-buttons {
+    width: 60%;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
+.contact-buttons button {
+    margin-left: 45px;
+}
+
+.footer-nav {
+    display:flex;
+    justify-content: space-between;
+    padding: 100px 0 25px 0;
+}
+
+.footer-nav nav ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-nav nav:first-child li{
+    margin-right: 50px;
+}
+
+.footer-nav nav:last-child li{
+    margin-left: 50px;
+}
+
+.footer-nav a {
+    color: black;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.footer-icons {
+    display: flex;
+    justify-content: center;
+    padding: 60px 0 30px 0;
+}
+
+.footer-icons i {
+    padding: 0 20px;
+    font-size: 34px;
+}
+
+small {
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 100;
+    margin-bottom: 100px;
+}
+
+
+
 
