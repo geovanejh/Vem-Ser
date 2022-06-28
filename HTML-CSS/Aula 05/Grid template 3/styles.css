@@ -1,0 +1,21 @@
+.grid {
+    padding: 120px 0;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 20px;
+}
+
+.bloco {
+    background-color: #C4C4C4;
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+.bloco-grande {
+    height: 500px;
+    background-color: #C4C4C4;
+}
+
+

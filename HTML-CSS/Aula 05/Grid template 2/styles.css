@@ -1,0 +1,15 @@
+.bloco {
+    margin: 10px;
+    background-color: #C4C4C4;
+    height: 300px;
+}
+
+main {
+    padding: 40px;
+}
+
+.grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}

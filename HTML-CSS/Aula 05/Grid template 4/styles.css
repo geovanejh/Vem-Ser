@@ -1,0 +1,51 @@
+.grid {
+    padding: 120px 0;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+}
+
+.grande {
+    height: 400px;
+}
+
+.bloco {
+    height: 190px;
+    background-color: #C4C4C4;
+    margin-bottom: 20px;
+}
+
+.grande img {
+    height: 350px;
+}
+
+.grande p {
+    color: white;
+    position: absolute;
+    line-height: 40px;
+    background-color: #2C2C2C;
+    width: 605px;
+    padding: 0 10px;
+}
+
+.pequeno {
+    margin-bottom: 10px;
+}
+
+.pequeno img {
+    height: 170px;
+    width: 100%;
+}
+
+.pequeno p{
+    color: white;
+    position: absolute;
+    line-height: 40px;
+    background-color: #2C2C2C;
+    width: 535px;
+    padding: 0 10px;
+}
+  

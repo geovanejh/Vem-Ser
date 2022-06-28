@@ -1,0 +1,32 @@
+.grid {
+    padding: 40px 120px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 2fr;
+}
+
+.bloco-grande {
+    height: 250px;
+    background-color: #C4C4C4;
+}
+
+.propaganda {
+    border: 2px solid black;
+    height: 300px;
+}
+
+.bermudas {
+    gap: 0 10px;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+}
+
+.item {
+    height: 150px;
+    background-color: gray;
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
