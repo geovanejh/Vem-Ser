@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+body {
+    font-family: 'Roboto';
+}
+
+header {
+    background: url(./images/patternECOStransparente.png), linear-gradient(to bottom right, #295ba7, #78b454);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2vh 30px;
+}
+
+header > div:first-child {
+    display: flex;
+    justify-content: space-between;
+}
+
+header > div:first-child > div input {
+    background-color: #356b6578 !important;
+    border-radius: 5px;
+    border: none;
+    width: 400px;
+    padding: 0 10px;
+    height: 4.2vh;
+    color: white;
+}
+
+header > div:first-child > div input::placeholder{ 
+    color: white;
+}
+
+header > div:first-child > div input:focus{ 
+    outline: none !important;
+    border:1px solid #78B455;
+}
+
+header > div:first-child > div input:focus::placholder{ 
+    color: transparent;
+}
+
+header > div a {
+    padding: 0 10px;
+    margin-right: 10px;
+}
+
+header > div:first-child > a:nth-child(2) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+header > div:first-child > a:nth-child(2):hover {
+    background: rgba(29, 36, 29, 0.4);
+    cursor: pointer;
+}
+
+header > div:first-child > a:nth-child(2) i{
+    margin-right: 10px;
+}
+
+header a > img{
+    width: 105px;
+    height: 36px;
+}
+
+header > div:last-child  i {
+    font-size: 30px;
+}
+
+header > div:last-child i:last-child{
+    font-size: 15px !important;
+    margin-left: 5px;
+}
+
+header > div:last-child {
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+}
+
+header > div:last-child:hover {
+    cursor: pointer;
+}
+
+header > div:last-child > div {
+    display: flex;
+    align-items: center;
+}
+
+main { 
+    background-color: #EFF3F8;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.right-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.left-content, .systems-icons, .birthdays-section {
+    background-color: #F8F9FA;
+    border-radius: 4px;
+    margin: 16px 8px;
+    box-shadow: 0px 2px 6px rgb(0 0 0 / 10%);
+}
+
+.birthdays-section {
+    margin: 0 8px;
+    height: auto;
+}
+
+.left-content h1, .systems-icons h1, .birthdays-section h1 {
+    padding: 16px;
+    font-size: 12px;
+    color: #202020;
+    font-weight: 500;
+    border-bottom: 1px solid lightgray;
+}
+
+.left-content > div {
+    margin: 16px;
+    height: 200px;
+    width: 640px;
+    box-shadow: 0px 2px 6px rgb(0 0 0 / 10%);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    background-color: white;
+}
+
+.left-content > div > div {
+    padding: 8px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.left-content > div > div > div:last-child {
+    display: flex;
+    justify-content: space-between;
+    color: #6c757d;
+    font-size: 13px;
+}
+
+.left-content > div > div > div:last-child > div {
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+}
+
+.fa-heart {
+    color: red;
+}
+
+.left-content {
+    height: 100%;
+}
+
+.left-content h2 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.left-content div > div p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.left-content > div > img {
+    height: 200px;
+    width: 200px;
+}
+
+
+.system-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+    gap: 16px;
+    padding: 26px;
+    color: #33A76F !important;
+}
+
+.system-buttons > div {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
+
+.system-buttons i{
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.system-buttons span {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.system-buttons > div:hover {
+    background: linear-gradient(to bottom right, #78b454, #295ba7);
+    color: white;
+    cursor: pointer;
+}
+
+.system-buttons > div {
+    height: 85px;
+    width: 120px;
+    border-radius: 6px;
+    box-shadow: 0px 2px 6px rgb(0 0 0 / 10%);
+}
+
+.birthday-card {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+}
+
+.birthday-card h2 {
+    margin-bottom: 0.5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    font-size: 16px;
+}
+
+.birthday-card p {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.birthday-card span {
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.birthday-card img{
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+    padding: 20px;
+}
+
+.search-input {
+    align-items: center;
+    display: flex;
+}
+
+.search-input i {
+    position: absolute;
+    margin-left: 395px;
+}
+
+
+
+
