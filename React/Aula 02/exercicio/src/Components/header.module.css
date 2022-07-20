@@ -1,0 +1,14 @@
+header {
+    background-color: red;
+    padding: 15px 0;
+}
+
+header>div {
+    display: flex;
+    align-items: center;
+
+}
+
+header ul {
+    margin-left: 30px;
+}
