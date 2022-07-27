@@ -1,9 +1,9 @@
 import { useFormik } from "formik";
 import { useContext } from "react";
-import { LoginContext } from "../context/LoginContext";
+import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
-  const { login, logado, setLogado } = useContext(LoginContext);
+  const { handleLogin, logado, setLogado } = useContext(AuthContext);
 
   const formik = useFormik({
     initialValues: {
@@ -11,7 +11,7 @@ const Login = () => {
       senha: "",
     },
     onSubmit: (values) => {
-      login(values);
+      handleLogin(values);
       setLogado(true);
     },
   });
