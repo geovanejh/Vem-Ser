@@ -5,15 +5,9 @@ import { Formik, Form, Field } from "formik";
 import { cepApi } from "../api";
 
 const Address = () => {
-  const { verificaLogado } = useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
   const navigate = useNavigate();
   const [endereco, setEndereco] = useState({});
-
-  useEffect(() => {
-    if (!verificaLogado()) {
-      navigate("/");
-    }
-  }, []);
 
   const GetData = async (props) => {
     console.log("aqui=>", props);

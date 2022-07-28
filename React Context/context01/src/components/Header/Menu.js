@@ -3,11 +3,11 @@ import { AuthContext } from "../../context/AuthContext";
 import { useContext, useEffect } from "react";
 
 const Menu = () => {
-  const { verificaLogado, handleLogout } = useContext(AuthContext);
+  const { handleLogout, auth } = useContext(AuthContext);
   return (
     <nav>
       <ul>
-        {!verificaLogado() ? (
+        {!auth ? (
           <>
             <Item name="Login" url="/" />
             <Item name="Cadastrar usuários" url="/users" />{" "}

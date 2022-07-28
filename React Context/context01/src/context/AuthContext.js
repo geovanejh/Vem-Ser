@@ -1,28 +1,31 @@
-import { createContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { createContext, useState, useEffect } from "react";
 import { usersApi } from "../api";
 
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [logado, setLogado] = useState(false);
-  const navigate = useNavigate();
+  const [auth, setAuth] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const verificaLogado = () => {
+  useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      return true;
+      usersApi.defaults.headers.common["Authorization"] = token;
+      setAuth(true);
     }
-  };
+    setLoading(false);
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/");
+    usersApi.defaults.headers.common["Authorization"] = undefined;
+    setAuth(false);
+    window.location.href = "/";
   };
 
   const handleRegister = async (user) => {
     try {
-      const { data } = await usersApi.post("/auth/create", user);
+      await usersApi.post("/auth/create", user);
       alert(`Usuário criado com sucesso.`);
     } catch (error) {
       console.log("error => ", error);
@@ -33,21 +36,25 @@ const AuthProvider = ({ children }) => {
     try {
       const { data } = await usersApi.post("/auth", user);
       localStorage.setItem("token", data);
-      navigate("/people");
+      usersApi.defaults.headers.common["Authorization"] = data;
+      setAuth(true);
+      window.location.href = "/people";
     } catch (error) {
       console.log("catch", error);
     }
   };
 
+  if (loading) {
+    return <h1>LOADING</h1>;
+  }
+
   return (
     <AuthContext.Provider
       value={{
         handleLogin,
-        logado,
-        setLogado,
-        verificaLogado,
         handleRegister,
         handleLogout,
+        auth,
       }}
     >
       {children}

@@ -33,15 +33,11 @@ const Users = () => {
           Cadastrar usuário: <br />
           <label htmlFor="login">Login:</label>
           <Field name="login" />
-          {formik.touched.login && formik.errors.login ? (
-            <div>{formik.errors.login}</div>
-          ) : null}
+          {formik.touched.login && formik.errors.login ? <div>{formik.errors.login}</div> : null}
           <br />
           <label htmlFor="senha">Senha:</label>
           <Field name="senha" type="password" />
-          {formik.touched.senha && formik.errors.senha ? (
-            <div>{formik.errors.senha}</div>
-          ) : null}
+          {formik.touched.senha && formik.errors.senha ? <div>{formik.errors.senha}</div> : null}
           <button type="submit">Cadastrar usuário</button>
         </Form>
       )}
