@@ -1,24 +1,25 @@
 import React from "react";
+import { Button } from "../Button/Button.styled";
+import FormField from "../FormField/FormField";
+import { FormAddPeople } from "./PeopleForm.style";
 
-const PeopleForm = ({ formik, update }) => {
+const PeopleForm = ({ formik, update, setNome, nome }) => {
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <label htmlFor="nome">Nome</label>
-      <input id="nome" name="nome" type="text" onChange={(e) => formik.handleChange(e)} value={formik.values.nome} />
-      <label htmlFor="cpf">CPF</label>
-      <input id="cpf" name="cpf" type="text" onChange={formik.handleChange} value={formik.values.cpf} />
-      <label htmlFor="email">Email</label>
-      <input id="email" name="email" type="email" onChange={formik.handleChange} value={formik.values.email} />
-      <label htmlFor="dataNascimento">Data de Nascimento</label>
-      <input
+    <FormAddPeople onSubmit={formik.handleSubmit}>
+      <FormField id="nome" type="text" label="Nome" onChange={(e) => formik.handleChange(e)} value={nome} />
+      <FormField id="cpf" type="text" label="CPF" onChange={formik.handleChange} value={formik.values.cpf} />
+      <FormField id="email" type="email" label="E-mail" onChange={formik.handleChange} value={formik.values.email} />
+      <FormField
         id="dataNascimento"
-        name="dataNascimento"
         type="text"
+        label="Data de Nascimento"
         onChange={formik.handleChange}
         value={formik.values.dataNascimento}
       />
-      <button type="submit">{update ? "Editar" : "Adicionar"}</button>
-    </form>
+      <Button type="submit" primary>
+        {update ? "Editar" : "Cadastrar"}
+      </Button>
+    </FormAddPeople>
   );
 };
 export default PeopleForm;

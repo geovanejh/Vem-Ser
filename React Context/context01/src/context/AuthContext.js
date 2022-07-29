@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { usersApi } from "../api";
+import { LoadingSpinner } from "./AuthContext.styled";
 
 export const AuthContext = createContext();
 
@@ -17,9 +18,9 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const handleLogout = () => {
+    setAuth(false);
     localStorage.removeItem("token");
     usersApi.defaults.headers.common["Authorization"] = undefined;
-    setAuth(false);
     window.location.href = "/";
   };
 
@@ -45,7 +46,11 @@ const AuthProvider = ({ children }) => {
   };
 
   if (loading) {
-    return <h1>LOADING</h1>;
+    return (
+      <LoadingSpinner>
+        <div></div>
+      </LoadingSpinner>
+    );
   }
 
   return (

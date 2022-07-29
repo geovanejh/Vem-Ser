@@ -58,6 +58,10 @@ export const LoginContainer = styled.div`
       text-align: center;
       letter-spacing: 0.2px;
       color: #3751ff;
+
+      :hover {
+        text-decoration: underline;
+      }
     }
   }
 `;
@@ -85,6 +89,10 @@ export const LoginForm = styled.form`
         text-align: right;
         letter-spacing: 0.1px;
         color: #9fa2b4;
+
+        :hover {
+          text-decoration: underline;
+        }
       }
     }
   }
@@ -115,20 +123,5 @@ export const LoginForm = styled.form`
       color: #4b506d;
       opacity: 0.4;
     }
-  }
-
-  button {
-    background: #3751ff;
-    box-shadow: 0px 4px 12px rgba(55, 81, 255, 0.24);
-    border-radius: 8px;
-    padding: 14px 24px;
-    border: none;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 20px;
-    text-align: center;
-    letter-spacing: 0.2px;
-    color: #ffffff;
-    cursor: pointer;
   }
 `;

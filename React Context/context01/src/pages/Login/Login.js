@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { LoginForm, LoginPage, LoginContainer } from "./Login.style";
 import logo from "../../assets/logo.svg";
+import { Button } from "../../components/Button/Button.styled";
 
 const Login = () => {
   const { handleLogin } = useContext(AuthContext);
@@ -52,7 +53,9 @@ const Login = () => {
               placeholder="Password"
             />
           </div>
-          <button type="submit">Submit</button>
+          <Button primary type="submit">
+            Log In
+          </Button>
         </LoginForm>
         <h5>
           Don’t have an account?

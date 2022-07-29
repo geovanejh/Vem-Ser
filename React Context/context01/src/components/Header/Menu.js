@@ -1,11 +1,19 @@
 import Item from "./Item";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext, useEffect } from "react";
+import { MenuNav } from "./Menu.styled";
+import { BiCurrentLocation } from "react-icons/bi";
+import { MdLogout } from "react-icons/md";
+import { IoPerson } from "react-icons/io5";
+import { useLocation } from "react-router-dom";
+import { Button } from "../../components/Button/Button.styled.js";
 
 const Menu = () => {
   const { handleLogout, auth } = useContext(AuthContext);
+  const { pathname: caminho } = useLocation();
+
   return (
-    <nav>
+    <MenuNav>
       <ul>
         {!auth ? (
           <>
@@ -14,13 +22,23 @@ const Menu = () => {
           </>
         ) : (
           <>
-            <Item name="Endereço" url="/address" />
-            <Item name="Pessoa" url="/people" />
-            <button onClick={handleLogout}> Sair </button>
+            <Item
+              name="Endereço"
+              url="/address"
+              icon={<BiCurrentLocation />}
+              active={caminho === "/address" ? "active" : ""}
+            />
+            <Item name="Pessoa" url="/people" icon={<IoPerson />} active={caminho === "/people" ? "active" : ""} />
+            <li>
+              <button onClick={handleLogout}>
+                <MdLogout />
+                <p>Sair</p>
+              </button>
+            </li>
           </>
         )}
       </ul>
-    </nav>
+    </MenuNav>
   );
 };
 export default Menu;

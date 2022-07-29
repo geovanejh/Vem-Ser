@@ -1,103 +1,85 @@
 import { useEffect, useState } from "react";
 import { usersApi } from "../../api";
-import PeopleContainer from "../../components/PeopleContainer/PeopleContainer";
-import PeopleForm from "../../components/PeopleForm/PeopleForm";
-import { useFormik } from "formik";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { PeopleContainer, PeopleHeader, PeopleSection } from "./People.styled";
+import PeopleListItem from "../../components/PeopleListItem/PeopleListItem.js";
+import { Button } from "../../components/Button/Button.styled";
 
 const People = () => {
   const [pessoas, setPessoas] = useState([]);
-  const [update, setUpdate] = useState(false);
+  const navigate = useNavigate();
 
   const setup = async () => {
     try {
       const { data } = await usersApi.get("/pessoa?pagina=0&tamanhoDasPaginas=20");
-      console.log(data);
       setPessoas(data.content);
     } catch (error) {
-      alert(error);
+      toast.error("Um erro aconteceu, tente novamente.", {
+        style: {
+          marginLeft: "255px",
+        },
+      });
     }
   };
 
   const handleDelete = async (person) => {
     try {
       await usersApi.delete(`/pessoa/${person.idPessoa}`);
-      alert(`usuário deletado com sucesso!`);
-      window.location.reload();
-    } catch (error) {
-      alert(error);
-    }
-  };
-
-  const handleCreate = async (person) => {
-    console.log(person);
-    try {
-      await usersApi.post(`/pessoa`, person);
-      alert(`Usuário cadastrado com sucesso.`);
-      window.location.reload();
-    } catch (error) {
-      alert(error);
-    }
-  };
-
-  const updatePerson = async (person) => {
-    console.log("person =>", person);
-    try {
-      await usersApi.put(`/pessoa/${person.id}`, {
-        nome: person.nome,
-        email: person.email,
-        dataNascimento: person.dataNascimento,
-        cpf: person.cpf,
+      toast.success("Usuário deletado com sucesso!", {
+        style: {
+          marginLeft: "255px",
+        },
       });
-      alert(`Usuário atualizado com sucesso!`);
-      window.location.reload();
+      setup();
     } catch (error) {
-      alert(error);
+      toast.error("Um erro aconteceu, tente novamente.", {
+        style: {
+          marginLeft: "255px",
+        },
+      });
     }
-    setUpdate(false);
   };
 
-  const handleEdit = async (person) => {
-    formik.values.id = person.idPessoa;
-    formik.values.nome = person.nome;
-    formik.values.cpf = person.cpf;
-    formik.values.email = person.email;
-    formik.values.dataNascimento = person.dataNascimento;
-    formik.resetForm();
-    setUpdate(true);
+  const handleEdit = (person) => {
+    navigate(`/people/form/${person.idPessoa}`);
   };
 
   useEffect(() => {
     setup();
   }, []);
 
-  const formik = useFormik({
-    initialValues: {
-      id: "",
-      nome: "",
-      cpf: "",
-      email: "",
-      dataNascimento: "",
-    },
-    onSubmit: (values) => {
-      update ? updatePerson(values) : handleCreate(values);
-    },
-  });
-
   return (
-    <div>
-      <PeopleForm handleCreate={handleCreate} formik={formik} update={update} />
-      <ul>
-        {pessoas.map((e) => (
-          <PeopleContainer
-            key={e.idPessoa}
-            person={e}
-            handleDelete={handleDelete}
-            handleEdit={handleEdit}
-            update={update}
-          />
-        ))}
-      </ul>
-    </div>
+    <PeopleSection>
+      <PeopleHeader>
+        <h1>Usuários</h1>
+        <div>
+          <p>Geovane Hartmann</p>
+          <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png" alt="" />
+        </div>
+      </PeopleHeader>
+      {/* <PeopleForm handleCreate={handleCreate} formik={formik} update={update} /> */}
+      <PeopleContainer>
+        <div>
+          <h2>Todos os usuários</h2>
+          <Button primary onClick={() => navigate("form/")}>
+            Cadastrar
+          </Button>
+        </div>
+        <ul>
+          <li>
+            <h3>Nome</h3>
+            <h3>E-mail</h3>
+            <h3>CPF</h3>
+            <h3>Data de Nascimento</h3>
+            <h3></h3>
+          </li>
+          {pessoas.map((e) => (
+            <PeopleListItem key={e.idPessoa} person={e} handleDelete={handleDelete} handleEdit={handleEdit} />
+          ))}
+        </ul>
+      </PeopleContainer>
+    </PeopleSection>
   );
 };
 export default People;

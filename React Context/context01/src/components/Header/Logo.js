@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
-import { FaEarlybirds } from "react-icons/fa";
+import Logotipo from "../../assets/logo.svg";
+import { LogoContainer } from "./Logo.styled";
 
 const Logo = () => {
   return (
-    <Link to="/">
-      <FaEarlybirds></FaEarlybirds>
-    </Link>
+    <LogoContainer>
+      <Link to="/">
+        <img src={Logotipo} alt="" />
+        <span>Dashboard Kit</span>
+      </Link>
+    </LogoContainer>
   );
 };
 export default Logo;
