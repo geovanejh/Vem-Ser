@@ -6,5 +6,5 @@ export const Label = styled.label`
   line-height: 15px;
   letter-spacing: 0.3px;
   text-transform: uppercase;
-  color: #9fa2b4;
+  color: ${(props) => (props.errors ? "red" : "#9fa2b4")}; ;
 `;

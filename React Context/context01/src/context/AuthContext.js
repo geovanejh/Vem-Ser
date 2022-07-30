@@ -1,12 +1,15 @@
 import { createContext, useState, useEffect } from "react";
 import { usersApi } from "../api";
-import { LoadingSpinner } from "./AuthContext.styled";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loading/Loading";
 
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState(false);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -20,46 +23,47 @@ const AuthProvider = ({ children }) => {
   const handleLogout = () => {
     setAuth(false);
     localStorage.removeItem("token");
-    usersApi.defaults.headers.common["Authorization"] = undefined;
-    window.location.href = "/";
+    delete usersApi.defaults.headers.common["Authorization"];
+    navigate("/");
   };
 
   const handleRegister = async (user) => {
     try {
+      setLoading(true);
       await usersApi.post("/auth/create", user);
-      alert(`Usuário criado com sucesso.`);
+      navigate("/");
     } catch (error) {
-      console.log("error => ", error);
+      const msg = error.response.data.message;
+      toast.error(msg);
     }
+    setLoading(false);
   };
 
   const handleLogin = async (user) => {
     try {
+      setLoading(true);
       const { data } = await usersApi.post("/auth", user);
       localStorage.setItem("token", data);
       usersApi.defaults.headers.common["Authorization"] = data;
       setAuth(true);
-      window.location.href = "/people";
+      navigate("/people");
     } catch (error) {
-      console.log("catch", error);
+      toast.error("Login ou senha incorretos.");
     }
+    setLoading(false);
   };
 
-  if (loading) {
-    return (
-      <LoadingSpinner>
-        <div></div>
-      </LoadingSpinner>
-    );
-  }
-
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <AuthContext.Provider
       value={{
         handleLogin,
         handleRegister,
         handleLogout,
         auth,
+        setLoading,
+        loading,
       }}
     >
       {children}

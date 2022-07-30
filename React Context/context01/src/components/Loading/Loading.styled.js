@@ -11,16 +11,20 @@ const spinner = keyframes`
     `;
 
 export const LoadingSpinner = styled.div`
+  position: absolute;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: white;
+
   > div {
     width: 50px;
     height: 50px;
-    border: 10px solid #f3f3f3; /* Light grey */
-    border-top: 10px solid #383636; /* Black */
+    border: 5px solid #f3f3f3; /* Light grey */
+    border-top: 5px solid #0f62fe; /* Black */
     border-radius: 50%;
-    animation: ${spinner} 1.5s linear infinite;
+    animation: ${spinner} 1s linear infinite;
   }
 `;

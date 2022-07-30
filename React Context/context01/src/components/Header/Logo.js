@@ -5,7 +5,7 @@ import { LogoContainer } from "./Logo.styled";
 const Logo = () => {
   return (
     <LogoContainer>
-      <Link to="/">
+      <Link to="/people">
         <img src={Logotipo} alt="" />
         <span>Dashboard Kit</span>
       </Link>

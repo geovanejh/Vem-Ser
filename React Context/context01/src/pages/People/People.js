@@ -5,15 +5,20 @@ import { useNavigate } from "react-router-dom";
 import { PeopleContainer, PeopleHeader, PeopleSection } from "./People.styled";
 import PeopleListItem from "../../components/PeopleListItem/PeopleListItem.js";
 import { Button } from "../../components/Button/Button.styled";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import Loading from "../../components/Loading/Loading";
 
 const People = () => {
+  const [loading, setLoading] = useState(true);
   const [pessoas, setPessoas] = useState([]);
   const navigate = useNavigate();
 
   const setup = async () => {
     try {
-      const { data } = await usersApi.get("/pessoa?pagina=0&tamanhoDasPaginas=20");
-      setPessoas(data.content);
+      const { data } = await usersApi.get("/pessoa/lista-com-enderecos");
+      console.log(data);
+      setPessoas(data);
     } catch (error) {
       toast.error("Um erro aconteceu, tente novamente.", {
         style: {
@@ -21,9 +26,10 @@ const People = () => {
         },
       });
     }
+    setLoading(false);
   };
 
-  const handleDelete = async (person) => {
+  const deletaUsuario = async (person) => {
     try {
       await usersApi.delete(`/pessoa/${person.idPessoa}`);
       toast.success("Usuário deletado com sucesso!", {
@@ -41,6 +47,24 @@ const People = () => {
     }
   };
 
+  const handleDelete = (person) => {
+    confirmAlert({
+      title: "Confirmar exclusão",
+      message: "Você realmente deseja deletar este usuário?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            deletaUsuario(person);
+          },
+        },
+        {
+          label: "Não",
+        },
+      ],
+    });
+  };
+
   const handleEdit = (person) => {
     navigate(`/people/form/${person.idPessoa}`);
   };
@@ -51,6 +75,7 @@ const People = () => {
 
   return (
     <PeopleSection>
+      {loading && <Loading />}
       <PeopleHeader>
         <h1>Usuários</h1>
         <div>

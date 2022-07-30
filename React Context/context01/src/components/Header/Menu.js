@@ -18,16 +18,10 @@ const Menu = () => {
         {!auth ? (
           <>
             <Item name="Login" url="/" />
-            <Item name="Cadastrar usuários" url="/users" />{" "}
+            <Item name="Cadastrar usuários" url="/users" />
           </>
         ) : (
           <>
-            <Item
-              name="Endereço"
-              url="/address"
-              icon={<BiCurrentLocation />}
-              active={caminho === "/address" ? "active" : ""}
-            />
             <Item name="Pessoa" url="/people" icon={<IoPerson />} active={caminho === "/people" ? "active" : ""} />
             <li>
               <button onClick={handleLogout}>

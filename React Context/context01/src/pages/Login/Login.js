@@ -4,9 +4,11 @@ import { AuthContext } from "../../context/AuthContext";
 import { LoginForm, LoginPage, LoginContainer } from "./Login.style";
 import logo from "../../assets/logo.svg";
 import { Button } from "../../components/Button/Button.styled";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { handleLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -22,9 +24,9 @@ const Login = () => {
     <LoginPage>
       <LoginContainer>
         <img src={logo} alt="" />
-        <h3>Dashboard Kit</h3>
-        <h2>Log In to Dashboard Kit</h2>
-        <h5>Enter your email and password below</h5>
+        <h3>People Dashboard</h3>
+        <h2>Entre na sua conta </h2>
+        <h5>Digite seu login e senha abaixo</h5>
         <LoginForm onSubmit={formik.handleSubmit}>
           <div>
             <label htmlFor="login">login: </label>
@@ -40,9 +42,6 @@ const Login = () => {
           <div>
             <div>
               <label htmlFor="senha">Password: </label>
-              <small>
-                <a href="#">Forgot password?</a>
-              </small>
             </div>
             <input
               id="senha"
@@ -58,9 +57,9 @@ const Login = () => {
           </Button>
         </LoginForm>
         <h5>
-          Don’t have an account?
-          <a href="#">
-            <span>Sign up</span>
+          Não possui uma conta?
+          <a href="#" onClick={() => navigate("/users")}>
+            <span>Registre-se</span>
           </a>
         </h5>
       </LoginContainer>
