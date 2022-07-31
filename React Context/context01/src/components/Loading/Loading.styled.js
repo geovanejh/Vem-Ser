@@ -11,12 +11,11 @@ const spinner = keyframes`
     `;
 
 export const LoadingSpinner = styled.div`
-  position: absolute;
-  width: 100vw;
+  width: calc(100%-255px) !important;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   background-color: white;
 
   > div {

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ItemLista = styled.li`
   display: grid;
-  grid-template-columns: 1.5fr 1.5fr 1fr 1fr 0.5fr;
+  grid-template-columns: ${(props) => props.layout};
   list-style-type: none;
   padding: 24px 32px;
   border-bottom: 1px solid #dfe0eb;

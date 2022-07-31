@@ -66,7 +66,7 @@ export const PeopleContainer = styled.div`
   }
 
   ul > li:first-child {
-    grid-template-columns: 1.5fr 1.5fr 1fr 1fr 0.5fr;
+    grid-template-columns: ${(props) => props.layout};
     display: grid;
     border-bottom: 1.5px solid #dfe0eb;
     padding: 0 32px 12px 32px;

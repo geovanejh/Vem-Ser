@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
-  background: ${(props) => (props.primary ? "#3751ff" : props.background)};
+  background: ${(props) => (props.primary ? (props.disabled ? "gray" : "#3751FF") : props.background)};
   border-radius: ${(props) => (props.primary ? "6px" : props.borderRadius)};
   padding: ${(props) => (props.primary ? "14px 24px" : props.padding)};
   border: ${(props) => (props.primary ? "none" : props.border)};
@@ -14,6 +14,6 @@ export const Button = styled.button`
   cursor: pointer;
 
   :hover {
-    background: ${(props) => (props.primary ? "#3751ff" : props.hoverColor)};
+    background: ${(props) => (props.primary ? (props.disabled ? "gray" : "#3783ff") : props.backgroundHover)};
   }
 `;

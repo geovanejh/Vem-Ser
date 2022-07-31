@@ -5,6 +5,7 @@ import { LoginForm, LoginPage, LoginContainer } from "./Login.style";
 import logo from "../../assets/logo.svg";
 import { Button } from "../../components/Button/Button.styled";
 import { Navigate, useNavigate } from "react-router-dom";
+import FormField from "../../components/Form/FormField/FormField";
 
 const Login = () => {
   const { handleLogin } = useContext(AuthContext);
@@ -28,30 +29,26 @@ const Login = () => {
         <h2>Entre na sua conta </h2>
         <h5>Digite seu login e senha abaixo</h5>
         <LoginForm onSubmit={formik.handleSubmit}>
-          <div>
-            <label htmlFor="login">login: </label>
-            <input
-              id="login"
-              name="login"
-              type="text"
-              onChange={formik.handleChange}
-              value={formik.values.login}
-              placeholder="Email address"
-            />
-          </div>
-          <div>
-            <div>
-              <label htmlFor="senha">Password: </label>
-            </div>
-            <input
-              id="senha"
-              name="senha"
-              type="password"
-              onChange={formik.handleChange}
-              value={formik.values.senha}
-              placeholder="Password"
-            />
-          </div>
+          <FormField
+            id="login"
+            type="text"
+            label="Login"
+            onChange={formik.handleChange}
+            value={formik.values.login}
+            onBlur={formik.handleBlur}
+            formik={formik}
+            placeholder="Login"
+          />
+          <FormField
+            id="senha"
+            type="password"
+            label="Senha"
+            onChange={formik.handleChange}
+            value={formik.values.senha}
+            onBlur={formik.handleBlur}
+            formik={formik}
+            placeholder="Senha"
+          />
           <Button primary type="submit">
             Log In
           </Button>

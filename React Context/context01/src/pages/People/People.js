@@ -84,7 +84,7 @@ const People = () => {
         </div>
       </PeopleHeader>
       {/* <PeopleForm handleCreate={handleCreate} formik={formik} update={update} /> */}
-      <PeopleContainer>
+      <PeopleContainer layout="1.5fr 1.5fr 1fr 1fr 1fr 0.5fr">
         <div>
           <h2>Todos os usuários</h2>
           <Button primary onClick={() => navigate("form/")}>
@@ -97,6 +97,7 @@ const People = () => {
             <h3>E-mail</h3>
             <h3>CPF</h3>
             <h3>Data de Nascimento</h3>
+            <h3>Endereços</h3>
             <h3></h3>
           </li>
           {pessoas.map((e) => (

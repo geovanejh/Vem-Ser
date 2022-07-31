@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { Toaster } from "react-hot-toast";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Footer from "./components/Footer/Footer";
+import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
-import AuthProvider, { AuthContext } from "./context/AuthContext";
+import { AuthContext } from "./context/AuthContext";
 import Address from "./pages/Address";
+import Endereco from "./pages/Endereco/Endereco";
+import EnderecoCrudPage from "./pages/EnderecoCrudPage/EnderecoCrudPage";
 import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound";
 import People from "./pages/People/People";
@@ -31,6 +32,11 @@ function App() {
               <Route path="/people" element={<People />} />
               <Route path="/people/form/" element={<UserForm />} />
               <Route path="/people/form/:id" element={<UserForm />} />
+              <Route path="/endereco/" element={<Endereco />} />
+              <Route path="/endereco/:id" element={<Endereco />} />
+              <Route path="/endereco/form" element={<EnderecoCrudPage />} />
+              <Route path="/endereco/form/idPessoa=:id" element={<EnderecoCrudPage />} />
+              <Route path="/endereco/form/idEndereco=:id" element={<EnderecoCrudPage />} />
             </>
           )}
           <Route path="*" element={<NotFound />}></Route>

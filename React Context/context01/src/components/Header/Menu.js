@@ -22,7 +22,18 @@ const Menu = () => {
           </>
         ) : (
           <>
-            <Item name="Pessoa" url="/people" icon={<IoPerson />} active={caminho === "/people" ? "active" : ""} />
+            <Item
+              name="Endereço"
+              url="/endereco"
+              icon={<BiCurrentLocation />}
+              active={caminho.includes("/endereco") ? "active" : ""}
+            />
+            <Item
+              name="Pessoa"
+              url="/people"
+              icon={<IoPerson />}
+              active={caminho.includes("/people") ? "active" : ""}
+            />
             <li>
               <button onClick={handleLogout}>
                 <MdLogout />

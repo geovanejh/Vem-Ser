@@ -21,13 +21,16 @@ const UserForm = () => {
 
   const setup = async () => {
     if (id) {
-      console.log("entrou");
       const { data } = await usersApi.get(`/pessoa/lista-completa?idPessoa=${id}`);
-      formik.values.id = data[0].idPessoa;
-      formik.values.nome = data[0].nome;
-      formik.values.cpf = data[0].cpf;
-      formik.values.email = data[0].email;
-      const date = moment(data[0].dataNascimento).format("DD/MM/YYYY");
+      const person = data[0];
+      formik.values.id = person.idPessoa;
+      formik.values.nome = person.nome;
+      const newCpf = `${person.cpf.slice(0, 3)}.${person.cpf.slice(3, 6)}.${person.cpf.slice(6, 9)}-${person.cpf.slice(
+        9
+      )}`;
+      formik.values.cpf = newCpf;
+      formik.values.email = person.email;
+      const date = moment(person.dataNascimento).format("DD/MM/YYYY");
       formik.values.dataNascimento = date;
       formik.resetForm();
     }
@@ -60,6 +63,7 @@ const UserForm = () => {
   };
 
   const handleUpdate = async (person) => {
+    console.log("aq");
     formataCamposBackend(person);
     try {
       await usersApi.put(`/pessoa/${person.id}`, {
@@ -94,7 +98,7 @@ const UserForm = () => {
     validationSchema: Yup.object({
       nome: Yup.string().min(3, "- O nome deve ter mais de 2 caracteres.").required("- Obrigatório"),
       cpf: Yup.string().min(14, "- Curto demais.").required("- Obrigatório"),
-      email: Yup.string().required("- Obrigatório"),
+      email: Yup.string().required("- Obrigatório").email("Email inválido."),
       dataNascimento: Yup.string().min(10, "- Curto demais.").required("- Obrigatório"),
     }),
     onSubmit: (values) => {

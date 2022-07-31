@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const Input = styled.input`
   background: #fcfdfe;
-  border: ${(props) => (props.errors ? "1px solid red" : "1px solid #f0f1f7")};
+  border: ${(props) => (props.errors && props.touched ? "1px solid red" : "1px solid #f0f1f7")};
   border-radius: 8px;
   padding: 8px 16px;
-  width: 316px;
+  width: ${(props) => (props.width ? props.width : "316px")};
   height: 42px;
 
   ::placeholder {
