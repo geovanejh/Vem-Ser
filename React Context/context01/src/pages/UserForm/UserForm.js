@@ -4,11 +4,11 @@ import { usersApi } from "../../api";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { UserFormContainer } from "./UserForm.styled";
 import { toast } from "react-hot-toast";
 import moment from "moment";
 import Loading from "../../components/Loading/Loading";
 import * as Yup from "yup";
+import { FormContainer } from "../../components/Form/FormContainer";
 
 const UserForm = () => {
   const { id } = useParams();
@@ -63,7 +63,6 @@ const UserForm = () => {
   };
 
   const handleUpdate = async (person) => {
-    console.log("aq");
     formataCamposBackend(person);
     try {
       await usersApi.put(`/pessoa/${person.id}`, {
@@ -109,9 +108,9 @@ const UserForm = () => {
   return loading ? (
     <Loading />
   ) : (
-    <UserFormContainer>
+    <FormContainer>
       <PeopleForm formik={formik} id={id} />
-    </UserFormContainer>
+    </FormContainer>
   );
 };
 export default UserForm;

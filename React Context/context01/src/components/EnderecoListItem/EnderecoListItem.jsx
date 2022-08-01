@@ -1,11 +1,11 @@
 import { Button } from "../Button/Button.styled";
-import { ItemLista } from "../PeopleListItem/PeopleListItem.style";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { FiEdit } from "react-icons/fi";
+import { ListItem } from "../FlatList/ListItem";
 
 const EnderecoListItem = ({ rua, cidade, numero, estado, cep, handleEdit, handleDelete, id, layout }) => {
   return (
-    <ItemLista layout={layout}>
+    <ListItem layout={layout}>
       <div>{rua}</div>
       <div>{numero}</div>
       <div>{cidade}</div>
@@ -19,7 +19,7 @@ const EnderecoListItem = ({ rua, cidade, numero, estado, cep, handleEdit, handle
           <RiDeleteBinFill />
         </Button>
       </div>
-    </ItemLista>
+    </ListItem>
   );
 };
 export default EnderecoListItem;

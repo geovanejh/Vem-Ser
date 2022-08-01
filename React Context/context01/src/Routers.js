@@ -3,14 +3,13 @@ import { Toaster } from "react-hot-toast";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import { AuthContext } from "./context/AuthContext";
-import Address from "./pages/Address";
 import Endereco from "./pages/Endereco/Endereco";
 import EnderecoCrudPage from "./pages/EnderecoCrudPage/EnderecoCrudPage";
 import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound";
 import People from "./pages/People/People";
 import UserForm from "./pages/UserForm/UserForm";
-import Users from "./pages/Users/Users";
+import Users from "./pages/Register/Register";
 import { MainContent, RouterContainer } from "./Routers.styled";
 
 function App() {
@@ -28,7 +27,7 @@ function App() {
             </>
           ) : (
             <>
-              <Route path="/address" element={<Address />} />
+              <Route path="/" element={<People />} />
               <Route path="/people" element={<People />} />
               <Route path="/people/form/" element={<UserForm />} />
               <Route path="/people/form/:id" element={<UserForm />} />

@@ -7,7 +7,7 @@ const Logo = () => {
     <LogoContainer>
       <Link to="/people">
         <img src={Logotipo} alt="" />
-        <span>Dashboard Kit</span>
+        <span>People Dashboard</span>
       </Link>
     </LogoContainer>
   );

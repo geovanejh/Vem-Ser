@@ -5,26 +5,23 @@ import { FormRow } from "../Form/FormRow";
 import FormField from "../Form/FormField/FormField";
 import SelectField from "../Form/SelectField/SelectField";
 import { toast } from "react-hot-toast";
+import { maskCEP, maskOnlyNumbers } from "../../utils/masks";
 
 const EnderecoForm = ({ formik, pessoas }) => {
   const getCepData = async (cep) => {
     try {
       const { data } = await cepApi.get(`${cep.replace("-", "")}/json/`);
-      formik.setFieldValue("rua", data.logradouro);
-      formik.setFieldValue("bairro", data.bairro);
-      formik.setFieldValue("cidade", data.localidade);
-      formik.setFieldValue("estado", data.uf);
+      if (data.erro) {
+        toast.error("CPF não encontrado.");
+      } else {
+        formik.setFieldValue("rua", data.logradouro);
+        formik.setFieldValue("bairro", data.bairro);
+        formik.setFieldValue("cidade", data.localidade);
+        formik.setFieldValue("estado", data.uf);
+      }
     } catch (error) {
       toast.error("Um erro aconteceu, tente novamente.");
     }
-  };
-
-  const maskCEP = (value) => {
-    return value.replace(/\D/g, "").replace(/^(\d{5})(\d{3})+?$/, "$1-$2");
-  };
-
-  const maskOnlyNumbers = (value) => {
-    return value.replace(/\D/g, "");
   };
 
   return (

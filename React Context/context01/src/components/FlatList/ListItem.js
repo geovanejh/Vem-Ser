@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ItemLista = styled.li`
+export const ListItem = styled.li`
   display: grid;
   grid-template-columns: ${(props) => props.layout};
   list-style-type: none;

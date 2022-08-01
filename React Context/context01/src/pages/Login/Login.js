@@ -1,11 +1,13 @@
 import { useFormik } from "formik";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { LoginForm, LoginPage, LoginContainer } from "./Login.style";
 import logo from "../../assets/logo.svg";
 import { Button } from "../../components/Button/Button.styled";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import FormField from "../../components/Form/FormField/FormField";
+import { AuthPage } from "../../components/AuthPages/AuthPage";
+import { AuthContainer } from "../../components/AuthPages/AuthContainer";
+import { AuthForm } from "../../components/AuthPages/LoginForm";
 
 const Login = () => {
   const { handleLogin } = useContext(AuthContext);
@@ -22,13 +24,13 @@ const Login = () => {
   });
 
   return (
-    <LoginPage>
-      <LoginContainer>
+    <AuthPage>
+      <AuthContainer>
         <img src={logo} alt="" />
         <h3>People Dashboard</h3>
         <h2>Entre na sua conta </h2>
         <h5>Digite seu login e senha abaixo</h5>
-        <LoginForm onSubmit={formik.handleSubmit}>
+        <AuthForm onSubmit={formik.handleSubmit}>
           <FormField
             id="login"
             type="text"
@@ -52,15 +54,15 @@ const Login = () => {
           <Button primary type="submit">
             Log In
           </Button>
-        </LoginForm>
+        </AuthForm>
         <h5>
           Não possui uma conta?
           <a href="#" onClick={() => navigate("/users")}>
             <span>Registre-se</span>
           </a>
         </h5>
-      </LoginContainer>
-    </LoginPage>
+      </AuthContainer>
+    </AuthPage>
   );
 };
 export default Login;

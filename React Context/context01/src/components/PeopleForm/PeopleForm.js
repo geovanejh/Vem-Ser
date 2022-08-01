@@ -1,39 +1,17 @@
 import React from "react";
+import { maskCPF, maskDate, maskTitleCase } from "../../utils/masks";
 import { Button } from "../Button/Button.styled";
 import FormField from "../Form/FormField/FormField";
 import { FormAddPeople } from "./PeopleForm.style";
 
 const PeopleForm = ({ formik, id }) => {
-  const maskDate = (value) => {
-    return value
-      .replace(/\D/g, "")
-      .replace(/(\d{2})(\d)/, "$1/$2")
-      .replace(/(\d{2})(\d)/, "$1/$2")
-      .replace(/(\d{4})(\d)/, "$1");
-  };
-
-  const maskCPF = (value) => {
-    return value
-      .replace(/\D/g, "")
-      .replace(/(\d{3})(\d)/, "$1.$2")
-      .replace(/(\d{3})(\d)/, "$1.$2")
-      .replace(/(\d{3})(\d{1,2})/, "$1-$2")
-      .replace(/(-\d{2})\d+?$/, "$1");
-  };
-
-  function toTitleCase(str) {
-    return str.replace(/\w\S*/g, function (txt) {
-      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    });
-  }
-
   return (
     <FormAddPeople onSubmit={formik.handleSubmit}>
       <FormField
         id="nome"
         type="text"
         label="Nome"
-        onChange={(e) => formik.setFieldValue("nome", toTitleCase(e.target.value))}
+        onChange={(e) => formik.setFieldValue("nome", maskTitleCase(e.target.value))}
         value={formik.values.nome}
         onBlur={formik.handleBlur}
         formik={formik}

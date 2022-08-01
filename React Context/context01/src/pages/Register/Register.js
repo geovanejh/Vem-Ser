@@ -1,13 +1,15 @@
 import * as Yup from "yup";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useFormik } from "formik";
 import { AuthContext } from "../../context/AuthContext";
-import { LoginContainer, LoginPage, LoginForm } from "../Login/Login.style";
 import { Button } from "../../components/Button/Button.styled";
 import logo from "../../assets/logo.svg";
 import FormField from "../../components/Form/FormField/FormField";
 import Loading from "../../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
+import { AuthPage } from "../../components/AuthPages/AuthPage";
+import { AuthContainer } from "../../components/AuthPages/AuthContainer";
+import { AuthForm } from "../../components/AuthPages/LoginForm";
 
 const Users = () => {
   const { handleRegister, loading } = useContext(AuthContext);
@@ -43,13 +45,13 @@ const Users = () => {
   return loading ? (
     <Loading />
   ) : (
-    <LoginPage>
+    <AuthPage>
       {loading && <Loading />}
-      <LoginContainer>
+      <AuthContainer>
         <img src={logo} alt="" />
         <h3>People Dashboard</h3>
         <h2>Registre sua conta</h2>
-        <LoginForm onSubmit={formik.handleSubmit}>
+        <AuthForm onSubmit={formik.handleSubmit}>
           <FormField
             id="login"
             type="text"
@@ -83,15 +85,15 @@ const Users = () => {
           <Button primary type="submit">
             Register
           </Button>
-        </LoginForm>
+        </AuthForm>
         <h5>
           Já possui uma conta?
           <a href="#" onClick={() => navigate("/")}>
             <span>Login</span>
           </a>
         </h5>
-      </LoginContainer>
-    </LoginPage>
+      </AuthContainer>
+    </AuthPage>
   );
 };
 export default Users;

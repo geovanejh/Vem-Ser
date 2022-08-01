@@ -6,44 +6,33 @@ import { Button } from "../../components/Button/Button.styled";
 import EnderecoListItem from "../../components/EnderecoListItem/EnderecoListItem";
 import SelectField from "../../components/Form/SelectField/SelectField";
 import Loading from "../../components/Loading/Loading";
-import { PeopleContainer, PeopleHeader, PeopleSection } from "../People/People.styled";
 import { toast } from "react-hot-toast";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import { ListPage } from "../../components/ListPages/ListPage";
+import { ListPageHeader } from "../../components/ListPages/ListPageHeader";
+import { ListPageContainer } from "../../components/ListPages/ListPageContainer";
 
 function Endereco() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [pessoas, setPessoas] = useState([]);
-  const [dados, setDados] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log(filtered);
 
   const setup = async () => {
-    const { data } = await usersApi.get(`/pessoa/lista-com-enderecos`);
-    setDados(data);
-
-    if (id) {
+    try {
+      const { data } = await usersApi.get(`/pessoa/lista-com-enderecos`);
       formik.setFieldValue("proprietario", id);
-      try {
-        const { data: filtrado } = await usersApi.get(`/pessoa/lista-com-enderecos?idPessoa=${id}`);
-        setFiltered(filtrado[0].enderecos);
-      } catch (error) {
-        toast.error("Um erro aconteceu.");
-      }
-    } else {
-      try {
-        const { data: filtrado } = await usersApi.get(`endereco?pagina=0&tamanhoDasPaginas=20`);
-        setFiltered(filtrado.content);
-      } catch (error) {
-        toast.error("Um erro aconteceu.");
-      }
-    }
+      atualizaEnderecos(id);
 
-    const nomes = data.map((e) => {
-      return { nome: e.nome, id: e.idPessoa };
-    });
-    setPessoas([{ nome: "Todos", id: "" }, ...nomes]);
-    setLoading(false);
+      const nomes = data.map((e) => {
+        return { nome: e.nome, id: e.idPessoa };
+      });
+      setPessoas([{ nome: "Todos", id: "" }, ...nomes]);
+    } catch (error) {
+      toast.error("Um erro aconteceu, tente novamente.");
+    }
   };
 
   const atualizaEnderecos = async (idClicado) => {
@@ -70,7 +59,8 @@ function Endereco() {
     navigate(`/endereco/form/idEndereco=${idRecebido}`);
   };
 
-  const handleDelete = async (idRecebido) => {
+  const deletaEndereco = async (idRecebido) => {
+    setLoading(true);
     try {
       await usersApi.delete(`/endereco/${idRecebido}`);
       atualizaEnderecos(id);
@@ -78,10 +68,28 @@ function Endereco() {
     } catch (error) {
       toast.error("Um erro aconteceu, tente novamente.");
     }
+    setLoading(false);
+  };
+
+  const handleDelete = async (idRecebido) => {
+    confirmAlert({
+      title: "Confirmar exclusão",
+      message: "Você realmente deseja deletar este usuário?",
+      buttons: [
+        {
+          label: "Sim",
+          onClick: () => {
+            deletaEndereco(idRecebido);
+          },
+        },
+        {
+          label: "Não",
+        },
+      ],
+    });
   };
 
   useEffect(() => {
-    console.log("useeffect");
     setup();
   }, []);
 
@@ -93,22 +101,19 @@ function Endereco() {
     initialValues: {
       proprietario: "",
     },
-    onSubmit: (values) => {
-      console.log(values);
-    },
   });
   return loading ? (
     <Loading />
   ) : (
-    <PeopleSection>
-      <PeopleHeader>
+    <ListPage>
+      <ListPageHeader>
         <h1>Usuários</h1>
         <div>
           <p>Geovane Hartmann</p>
           <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png" alt="" />
         </div>
-      </PeopleHeader>
-      <PeopleContainer layout="1fr 0.5fr 1fr 0.5fr 1fr 0.5fr">
+      </ListPageHeader>
+      <ListPageContainer layout="1fr 0.5fr 1fr 0.5fr 1fr 0.5fr">
         <div>
           <SelectField
             id="proprietario"
@@ -155,8 +160,8 @@ function Endereco() {
             ))}
           </ul>
         )}
-      </PeopleContainer>
-    </PeopleSection>
+      </ListPageContainer>
+    </ListPage>
   );
 }
 export default Endereco;

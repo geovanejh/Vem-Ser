@@ -1,16 +1,6 @@
 import styled from "styled-components";
 
-export const LoginPage = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: #363740;
-  height: 100vh;
-  width: 100vw;
-`;
-
-export const LoginContainer = styled.div`
+export const AuthContainer = styled.div`
   background-color: #fff;
   padding: 40px 32px;
   border: 1px solid #dfe0eb;
@@ -62,38 +52,6 @@ export const LoginContainer = styled.div`
 
       :hover {
         text-decoration: underline;
-      }
-    }
-  }
-`;
-
-export const LoginForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  margin: 48px 0 32px 0;
-
-  > div {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-
-    > div {
-      display: flex;
-      justify-content: space-between;
-
-      a {
-        text-decoration: none;
-        font-weight: 400;
-        font-size: 10px;
-        line-height: 13px;
-        text-align: right;
-        letter-spacing: 0.1px;
-        color: #9fa2b4;
-
-        :hover {
-          text-decoration: underline;
-        }
       }
     }
   }

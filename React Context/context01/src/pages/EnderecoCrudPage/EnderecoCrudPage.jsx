@@ -25,15 +25,13 @@ const EnderecoCrudPage = () => {
         setPessoas(newArr[0]);
         formik.setFieldValue("proprietario", newArr[0][0].id);
       } catch (error) {
-        console.log(error);
+        toast.error("Um erro aconteceu, tente novamente.");
       }
     } else if (caminho.includes("/idEndereco")) {
       try {
         const { data } = await usersApi.get(`/endereco/${id}`);
-        console.log("dataaaa", data);
+
         const { data: proprietario } = await usersApi.get(`/pessoa/lista-completa?idPessoa=${data.idPessoa}`);
-        console.log("data > ", data);
-        console.log("proprietario >", proprietario);
 
         setPessoas([{ nome: proprietario[0].nome, id: proprietario[0].idPessoa }]);
         const formatedCep = `${data.cep.substring(0, 5)}-${data.cep.substring(5)}`;
@@ -43,7 +41,9 @@ const EnderecoCrudPage = () => {
         formik.setFieldValue("estado", data.estado);
         formik.setFieldValue("complemento", data.complemento);
         formik.setFieldValue("numero", data.numero);
-      } catch (error) {}
+      } catch (error) {
+        toast.error("Um erro aconteceu, tente novamente.");
+      }
     } else {
       try {
         const { data } = await usersApi.get(`pessoa/lista-completa`);
@@ -51,8 +51,11 @@ const EnderecoCrudPage = () => {
           return { nome: e.nome, id: e.idPessoa };
         });
         setPessoas(newArr);
-      } catch (error) {}
+      } catch (error) {
+        toast.error("Um erro aconteceu, tente novamente.");
+      }
     }
+
     setLoading(false);
   };
 
@@ -100,6 +103,9 @@ const EnderecoCrudPage = () => {
       cep: Yup.string().min(9, "- Formato incorreto.").max(9, "- Formato incorreto.").required("- Obrigatório."),
       rua: Yup.string().max(30, "- Longo demais.").required("- Obrigatório."),
       numero: Yup.string().required("- Obrigatório."),
+      bairro: Yup.string().required("- Obrigatório."),
+      cidade: Yup.string().required("- Obrigatório."),
+      estado: Yup.string().required("- Obrigatório."),
     }),
     onSubmit: (values) => {
       const newObj = {
