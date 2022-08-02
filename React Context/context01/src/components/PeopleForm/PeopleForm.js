@@ -10,7 +10,7 @@ const PeopleForm = ({ formik, id }) => {
       <FormField
         id="nome"
         type="text"
-        label="Nome"
+        label="Nome*"
         onChange={(e) => formik.setFieldValue("nome", maskTitleCase(e.target.value))}
         value={formik.values.nome}
         onBlur={formik.handleBlur}
@@ -20,7 +20,7 @@ const PeopleForm = ({ formik, id }) => {
       <FormField
         id="cpf"
         type="text"
-        label="CPF"
+        label="CPF*"
         onChange={(e) => formik.setFieldValue("cpf", maskCPF(e.target.value))}
         value={formik.values.cpf}
         onBlur={formik.handleBlur}
@@ -30,7 +30,7 @@ const PeopleForm = ({ formik, id }) => {
       <FormField
         id="email"
         type="text"
-        label="E-mail"
+        label="E-mail*"
         onChange={formik.handleChange}
         value={formik.values.email}
         onBlur={formik.handleBlur}
@@ -40,7 +40,7 @@ const PeopleForm = ({ formik, id }) => {
       <FormField
         id="dataNascimento"
         type="text"
-        label="Data de Nascimento"
+        label="Data de Nascimento*"
         onChange={(e) => formik.setFieldValue("dataNascimento", maskDate(e.target.value))}
         value={formik.values.dataNascimento}
         onBlur={formik.handleBlur}

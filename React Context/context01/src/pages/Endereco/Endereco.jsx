@@ -46,7 +46,7 @@ function Endereco() {
       }
     } else {
       try {
-        const { data: filtrado } = await usersApi.get(`endereco?pagina=0&tamanhoDasPaginas=20`);
+        const { data: filtrado } = await usersApi.get(`endereco?pagina=0&tamanhoDasPaginas=100`);
         setFiltered(filtrado.content);
       } catch (error) {
         toast.error("Um erro aconteceu.");
@@ -107,7 +107,7 @@ function Endereco() {
   ) : (
     <ListPage>
       <ListPageHeader>
-        <h1>Usuários</h1>
+        <h1>Endereços</h1>
         <div>
           <p>Geovane Hartmann</p>
           <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png" alt="" />

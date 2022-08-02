@@ -29,7 +29,7 @@ const EnderecoForm = ({ formik, pessoas }) => {
       <SelectField
         id="proprietario"
         options={pessoas}
-        label="Proprietário"
+        label="Proprietário*"
         formik={formik}
         value={formik.values.proprietario}
         onChange={formik.handleChange}
@@ -37,7 +37,7 @@ const EnderecoForm = ({ formik, pessoas }) => {
       <FormField
         id="cep"
         type="text"
-        label="Cep"
+        label="Cep*"
         maxLength="9"
         onChange={(e) => formik.setFieldValue("cep", maskCEP(e.target.value))}
         value={formik.values.cep}
@@ -53,7 +53,7 @@ const EnderecoForm = ({ formik, pessoas }) => {
       <FormField
         id="rua"
         type="text"
-        label="Rua"
+        label="Rua*"
         onChange={formik.handleChange}
         value={formik.values.rua}
         onBlur={formik.handleBlur}
@@ -64,7 +64,7 @@ const EnderecoForm = ({ formik, pessoas }) => {
         <FormField
           id="bairro"
           type="text"
-          label="bairro"
+          label="bairro*"
           onChange={formik.handleChange}
           value={formik.values.bairro}
           onBlur={formik.handleBlur}
@@ -75,7 +75,7 @@ const EnderecoForm = ({ formik, pessoas }) => {
         <FormField
           id="numero"
           type="text"
-          label="Número"
+          label="Número*"
           onChange={(e) => formik.setFieldValue("numero", maskOnlyNumbers(e.target.value))}
           value={formik.values.numero}
           onBlur={formik.handleBlur}
@@ -88,7 +88,7 @@ const EnderecoForm = ({ formik, pessoas }) => {
         <FormField
           id="cidade"
           type="text"
-          label="cidade"
+          label="cidade*"
           onChange={formik.handleChange}
           value={formik.values.cidade}
           onBlur={formik.handleBlur}
@@ -99,7 +99,7 @@ const EnderecoForm = ({ formik, pessoas }) => {
         <FormField
           id="estado"
           type="text"
-          label="estado"
+          label="estado*"
           onChange={formik.handleChange}
           value={formik.values.estado}
           onBlur={formik.handleBlur}
