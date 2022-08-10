@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { connect } from "react-redux";
-import * as LoginActions from "../store/actions/Login";
+import * as LoginActions from "../store/actions/AuthActions";
+import { useNavigate } from "react-router-dom";
 
-const Login = ({ handleLogin }) => {
+const Login = ({ dispatch }) => {
+  const navigate = useNavigate();
   const [login, setLogin] = useState("");
   const [senha, setSenha] = useState("");
 
@@ -12,17 +14,11 @@ const Login = ({ handleLogin }) => {
       <input type="text" value={login} onChange={(e) => setLogin(e.target.value)} />
       <label htmlFor="senha">senha</label>
       <input type="text" value={senha} onChange={(e) => setSenha(e.target.value)} />
-      <button onClick={() => handleLogin(login, senha)}>Selecionar</button>
+      <button onClick={() => LoginActions.handleLogin(login, senha, dispatch, navigate)}>Selecionar</button>
     </div>
   );
 };
 
-const mapStateToProps = (state) => ({
-  token: state.AuthReducer.token,
-});
+const mapStateToProps = (state) => ({});
 
-const mapDispatchToProps = (dispatch) => ({
-  handleLogin: (login, senha) => dispatch(LoginActions.handleLogin(login, senha)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps)(Login);

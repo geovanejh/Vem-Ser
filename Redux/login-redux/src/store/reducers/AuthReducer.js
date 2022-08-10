@@ -5,9 +5,12 @@ const INITIAL_STATE = {
 };
 
 const AuthReducer = (state = INITIAL_STATE, action) => {
-  console.log(action);
-  if (action.type === "SET_LESSON") {
-    return { ...state, token: action.token };
+  if (action.type === "SET_LOGIN") {
+    console.log("ação: ", action);
+    return { ...state, token: action.token, isLogged: action.isLogged, isLoading: action.isLoading };
+  }
+  if (action.type === "SET_LOADING") {
+    return { ...state, isLoading: action.isLoading };
   }
   return state;
 };
