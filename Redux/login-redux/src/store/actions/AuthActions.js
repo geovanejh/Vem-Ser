@@ -1,8 +1,8 @@
 import { API_DBC } from "../../api";
 
-export async function handleLogin(login, senha, dispatch, navigate) {
+export const handleLogin = async (values, dispatch, navigate) => {
   try {
-    const { data } = await API_DBC.post("/auth", { login, senha });
+    const { data } = await API_DBC.post("/auth", values);
     localStorage.setItem("token", data);
     API_DBC.defaults.headers.common["Authorization"] = data;
     dispatch({
@@ -11,17 +11,25 @@ export async function handleLogin(login, senha, dispatch, navigate) {
       isLogged: true,
       isLoading: false,
     });
-    navigate("/");
+    navigate("/dashboard");
   } catch (error) {
     console.log(error);
   }
-}
+};
 
-export function isAuth(dispatch) {
+export const handleLogout = (dispatch, navigate) => {
+  localStorage.removeItem("token");
+  delete API_DBC.defaults.headers.common["Authorization"];
+  dispatch({
+    type: "SET_LOGOUT",
+  });
+  navigate("/login");
+};
+
+export const isAuth = async (dispatch) => {
   const token = localStorage.getItem("token");
   if (token) {
     API_DBC.defaults.headers.common["Authorization"] = token;
-    console.log("token:", token);
     dispatch({
       type: "SET_LOGIN",
       token: token,
@@ -36,4 +44,4 @@ export function isAuth(dispatch) {
       isLoading: false,
     });
   }
-}
+};
