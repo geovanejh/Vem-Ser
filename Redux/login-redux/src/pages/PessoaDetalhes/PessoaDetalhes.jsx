@@ -42,42 +42,47 @@ const PessoaDetalhes = ({ dispatch, pessoa, loading }) => {
               </Button>
             </div>
             <ul>
-              <li>
-                <p>Rua</p>
-                <p>Cidade/UF</p>
-                <p>N°</p>
-              </li>
-              {pessoa.enderecos &&
-                pessoa.enderecos.map((endereco) => (
+              {pessoa.enderecos.length <= 0 ? (
+                <small>Este usuário não possui nenhum endereço registrado.</small>
+              ) : (
+                <>
                   <li>
-                    <p>{endereco.logradouro}</p>
-                    <p>
-                      {endereco.cidade}/{endereco.estado}
-                    </p>
-                    <p>{endereco.numero}</p>
-                    <div>
-                      <Button
-                        onClick={() => navigate(`/endereco/form/${endereco.idEndereco}`)}
-                        border="none"
-                        background="transparent"
-                        fontSize="16px"
-                      >
-                        <FiEdit />
-                      </Button>
-                      <Button
-                        onClick={async () => {
-                          await handleDeleteEndereco(endereco.idEndereco);
-                          setup();
-                        }}
-                        border="none"
-                        background="transparent"
-                        fontSize="16px"
-                      >
-                        <RiDeleteBinFill />
-                      </Button>
-                    </div>
+                    <p>Rua</p>
+                    <p>Cidade/UF</p>
+                    <p>N°</p>
                   </li>
-                ))}
+                  {pessoa.enderecos.map((endereco) => (
+                    <li key={endereco.idEndereco}>
+                      <p>{endereco.logradouro}</p>
+                      <p>
+                        {endereco.cidade}/{endereco.estado}
+                      </p>
+                      <p>{endereco.numero}</p>
+                      <div>
+                        <Button
+                          onClick={() => navigate(`/endereco/form/${endereco.idEndereco}`)}
+                          border="none"
+                          background="transparent"
+                          fontSize="16px"
+                        >
+                          <FiEdit />
+                        </Button>
+                        <Button
+                          onClick={async () => {
+                            await handleDeleteEndereco(endereco.idEndereco, dispatch);
+                            setup();
+                          }}
+                          border="none"
+                          background="transparent"
+                          fontSize="16px"
+                        >
+                          <RiDeleteBinFill />
+                        </Button>
+                      </div>
+                    </li>
+                  ))}
+                </>
+              )}
             </ul>
           </div>
           <hr />
@@ -89,40 +94,46 @@ const PessoaDetalhes = ({ dispatch, pessoa, loading }) => {
               </Button>
             </div>
             <ul>
-              <li>
-                <p>Tipo</p>
-                <p>Telefone</p>
-                <p>Descrição</p>
-              </li>
-              {pessoa.contatos &&
-                pessoa.contatos.map((contato) => (
-                  <li key={contato.idContato}>
-                    <p>{contato.tipoContato}</p>
-                    <p>{contato.telefone}</p>
-                    <p>{contato.descricao}</p>
-                    <div>
-                      <Button
-                        onClick={() => navigate(`/contato/form/${contato.idContato}`)}
-                        border="none"
-                        background="transparent"
-                        fontSize="16px"
-                      >
-                        <FiEdit />
-                      </Button>
-                      <Button
-                        onClick={async () => {
-                          await handleDeleteContato(contato.idContato);
-                          setup();
-                        }}
-                        border="none"
-                        background="transparent"
-                        fontSize="16px"
-                      >
-                        <RiDeleteBinFill />
-                      </Button>
-                    </div>
+              {pessoa.contatos.length <= 0 ? (
+                <small>Este usuário não possui nenhum contato registrado.</small>
+              ) : (
+                <>
+                  <li>
+                    <p>Tipo</p>
+                    <p>Telefone</p>
+                    <p>Descrição</p>
                   </li>
-                ))}
+
+                  {pessoa.contatos.map((contato) => (
+                    <li key={contato.idContato}>
+                      <p>{contato.tipoContato}</p>
+                      <p>{contato.telefone}</p>
+                      <p>{contato.descricao}</p>
+                      <div>
+                        <Button
+                          onClick={() => navigate(`/contato/form/${contato.idContato}`)}
+                          border="none"
+                          background="transparent"
+                          fontSize="16px"
+                        >
+                          <FiEdit />
+                        </Button>
+                        <Button
+                          onClick={async () => {
+                            await handleDeleteContato(contato.idContato, dispatch);
+                            setup();
+                          }}
+                          border="none"
+                          background="transparent"
+                          fontSize="16px"
+                        >
+                          <RiDeleteBinFill />
+                        </Button>
+                      </div>
+                    </li>
+                  ))}
+                </>
+              )}
             </ul>
           </div>
         </div>

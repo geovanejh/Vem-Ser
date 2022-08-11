@@ -7,8 +7,9 @@ import { useEffect } from "react";
 import { getPessoaById } from "../store/actions/PessoaActions";
 import { connect } from "react-redux";
 import { getEnderecoById, handleEditEndereco, handleNewEndereco } from "../store/actions/EnderecoActions";
+import Loading from "../components/Loading/Loading";
 
-const EnderecoForm = ({ dispatch, pessoa, endereco }) => {
+const EnderecoForm = ({ dispatch, pessoa, endereco, loading }) => {
   const navigate = useNavigate();
   const { idPessoa, idEndereco } = useParams();
 
@@ -46,11 +47,15 @@ const EnderecoForm = ({ dispatch, pessoa, endereco }) => {
         tipo: "RESIDENCIAL",
       };
 
-      idPessoa ? handleNewEndereco(pessoa.idPessoa, newObj, navigate) : handleEditEndereco(endereco, newObj, navigate);
+      idPessoa
+        ? handleNewEndereco(pessoa.idPessoa, newObj, navigate, dispatch)
+        : handleEditEndereco(endereco, newObj, navigate, dispatch);
     },
   });
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <div>
       <FormContainer>
         <AddressForm formik={formik} />

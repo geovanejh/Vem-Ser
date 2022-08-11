@@ -1,5 +1,6 @@
 import { API_DBC } from "../../api";
-import { GetPessoas } from "./PessoaActions";
+import { maskCEP } from "../../utils/masks";
+import { setLoading } from "./UtilsActions";
 
 export const handleNewEndereco = async (idPessoa, values, navigate) => {
   try {
@@ -19,19 +20,22 @@ export const handleEditEndereco = async (endereco, values, navigate) => {
   }
 };
 
-export const handleDeleteEndereco = async (idEndereco) => {
+export const handleDeleteEndereco = async (idEndereco, dispatch) => {
+  setLoading(dispatch);
   try {
     await API_DBC.delete(`/endereco/${idEndereco}`);
   } catch (error) {
     alert(error);
   }
+  setLoading(dispatch);
 };
 
 export const getEnderecoById = async (idEndereco, dispatch, formik) => {
+  setLoading(dispatch);
   try {
     const { data } = await API_DBC.get(`/endereco/${idEndereco}`);
     if (formik) {
-      formik.setFieldValue("cep", data.cep);
+      formik.setFieldValue("cep", maskCEP(data.cep));
       formik.setFieldValue("rua", data.logradouro);
       formik.setFieldValue("cidade", data.cidade);
       formik.setFieldValue("estado", data.estado);
@@ -45,4 +49,5 @@ export const getEnderecoById = async (idEndereco, dispatch, formik) => {
   } catch (error) {
     alert(error);
   }
+  setLoading(dispatch);
 };

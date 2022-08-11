@@ -1,5 +1,6 @@
 import { API_DBC } from "../../api";
 import { formataPessoa } from "../../utils/formataBackend";
+import { formataDataFrontEnd, maskCPF } from "../../utils/masks";
 import { setLoading } from "./UtilsActions";
 
 export const GetPessoas = async (dispatch) => {
@@ -50,8 +51,8 @@ export const getPessoaById = async (id, dispatch, formik) => {
 
     if (formik) {
       formik.setFieldValue("nome", data[0].nome);
-      formik.setFieldValue("cpf", data[0].cpf);
-      formik.setFieldValue("dataNascimento", data[0].dataNascimento);
+      formik.setFieldValue("cpf", maskCPF(data[0].cpf));
+      formik.setFieldValue("dataNascimento", formataDataFrontEnd(data[0].dataNascimento));
       formik.setFieldValue("email", data[0].email);
     }
 

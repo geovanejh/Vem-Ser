@@ -1,4 +1,5 @@
 import { API_DBC } from "../../api";
+import { setLoading } from "./UtilsActions";
 
 export const handleNewContato = async (idPessoa, values, navigate) => {
   try {
@@ -10,6 +11,7 @@ export const handleNewContato = async (idPessoa, values, navigate) => {
 };
 
 export const getContatoById = async (idContato, dispatch, formik) => {
+  setLoading(dispatch);
   try {
     const { data } = await API_DBC.get(`/contato`);
     const filtrei = data.filter((e) => e.idContato == idContato);
@@ -26,6 +28,7 @@ export const getContatoById = async (idContato, dispatch, formik) => {
   } catch (error) {
     alert(error);
   }
+  setLoading(dispatch);
 };
 
 export const handleEditContato = async (idContato, values, navigate) => {
@@ -37,10 +40,12 @@ export const handleEditContato = async (idContato, values, navigate) => {
   }
 };
 
-export const handleDeleteContato = async (idContato) => {
+export const handleDeleteContato = async (idContato, dispatch) => {
+  setLoading(dispatch);
   try {
     await API_DBC.delete(`/contato/${idContato}`);
   } catch (error) {
     alert(error);
   }
+  setLoading(dispatch);
 };

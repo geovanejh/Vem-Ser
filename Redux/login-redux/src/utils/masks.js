@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export const maskCPF = (value) => {
   return value
     .replace(/\D/g, "")
@@ -34,4 +36,9 @@ export const maskPhone = (value) => {
     .replace(/\D/g, "")
     .replace(/(\d{2})(\d)/, "($1)$2")
     .replace(/(\d{5})(\d{4})(\d)/, "$1-$2");
+};
+
+export const formataDataFrontEnd = (data) => {
+  data = moment(data, "YYYY-MM-DD").format("DD/MM/YYYY");
+  return data;
 };

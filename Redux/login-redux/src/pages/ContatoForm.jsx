@@ -6,8 +6,9 @@ import { useEffect } from "react";
 import ContactForm from "../components/ContactForm/ContactForm";
 import { getContatoById, handleEditContato, handleNewContato } from "../store/actions/ContatoActions";
 import { connect } from "react-redux";
+import Loading from "../components/Loading/Loading";
 
-const ContatoForm = ({ dispatch }) => {
+const ContatoForm = ({ dispatch, loading }) => {
   const navigate = useNavigate();
   const { idPessoa, idContato } = useParams();
 
@@ -32,14 +33,20 @@ const ContatoForm = ({ dispatch }) => {
       telefone: Yup.string().required("- Obrigatório."),
     }),
     onSubmit: (values) => {
-      const newObj = {};
       idContato ? handleEditContato(idContato, values, navigate) : handleNewContato(idPessoa, values, navigate);
     },
   });
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <FormContainer>
       <ContactForm formik={formik} />
     </FormContainer>
   );
 };
-export default connect()(ContatoForm);
+
+const mapStateToProps = (state) => ({
+  loading: state.UtilsReducer.loading,
+});
+
+export default connect(mapStateToProps)(ContatoForm);

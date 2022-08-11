@@ -2,7 +2,6 @@ import { maskPhone } from "../../utils/masks";
 import { Button } from "../Button/Button.styled";
 import { Form } from "../Forms/Form";
 import FormField from "../Forms/FormField/FormField";
-import { FormRow } from "../Forms/FormRow";
 import SelectField from "../Forms/SelectField/SelectField";
 
 const options = [

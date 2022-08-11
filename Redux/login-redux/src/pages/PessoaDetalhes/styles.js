@@ -15,6 +15,11 @@ export const PageContainer = styled.div`
     margin: 12px 0 12px 0;
   }
 
+  small {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
   > div {
     > div {
       > div {

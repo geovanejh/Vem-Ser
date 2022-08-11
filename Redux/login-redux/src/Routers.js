@@ -13,6 +13,8 @@ import PessoaDetalhes from "./pages/PessoaDetalhes/PessoaDetalhes";
 import EnderecoForm from "./pages/EnderecoForm";
 import Loading from "./components/Loading/Loading";
 import ContatoForm from "./pages/ContatoForm";
+import Toaster from "react-hot-toast";
+
 function Routers({ dispatch, auth }) {
   useEffect(() => {
     isAuth(dispatch);
@@ -22,6 +24,7 @@ function Routers({ dispatch, auth }) {
     <Loading />
   ) : (
     <RouterContainer>
+      <Toaster />
       {auth.isLogged === true && <Header />}
       <Provider store={store}>
         <MainContent auth={auth.isLogged === true ? true : false}>
